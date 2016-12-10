@@ -20,6 +20,8 @@ exports.setContext = setContext
 exports.setDevTool = setDevTool
 exports.setOutput = setOutput
 exports.sourceMaps = sourceMaps
+exports.seDllPlugin = setDllPlugin
+exports.setDllReferencePlugin = setDllReferencePlugin
 
 /**
  * Wraps @webpack-blocks/core's `createConfig` to provide some sane default
@@ -139,4 +141,18 @@ function setOutput (output) {
  */
 function sourceMaps (devtool) {
   return setDevTool(devtool || 'cheap-module-source-map')
+}
+
+/**
+ * @see https://github.com/webpack/docs/wiki/list-of-plugins#dllplugin
+ */
+function seDllPlugin (options) {
+  return addPlugins(new webpack.DllPlugin(options))
+}
+
+/**
+ * @see https://github.com/webpack/docs/wiki/list-of-plugins#dllreferenceplugin
+ */
+function setDllReferencePlugin (options) {
+  return addPlugins(new webpack.DllReferencePlugin(options)
 }
